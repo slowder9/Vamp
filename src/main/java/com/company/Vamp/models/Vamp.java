@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Vamp {
     @Id//this is a primary key column
     @GeneratedValue(strategy = GenerationType.SEQUENCE)//the value of "id" will be automatically generated
-    int id;
+            int id;
 
     @Column
     private String description;
@@ -31,7 +31,7 @@ public class Vamp {
     private String Location;
 
     @Column
-    private Enum EventEnum;
+    private EventEnum eventCategory ;
 
     public Vamp(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String location) {
         this.id = id;

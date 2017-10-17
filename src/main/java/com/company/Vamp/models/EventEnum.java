@@ -8,7 +8,7 @@ public enum EventEnum {
 
     private String eventType;
 
-    public String getEventType(){
+    public String getEventType() {
         return eventType;
     }
 
