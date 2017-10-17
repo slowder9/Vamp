@@ -30,6 +30,9 @@ public class Vamp {
     @Column
     private String Location;
 
+    @Column
+    private Enum EventEnum;
+
     public Vamp(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String location) {
         this.id = id;
         this.description = description;
