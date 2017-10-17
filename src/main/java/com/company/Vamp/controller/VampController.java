@@ -24,9 +24,9 @@ public class VampController {
     List<Vamp> events = new ArrayList<>();
 
     public VampController() {
-        events.add(new Vamp(0, "Disc Golf", "Sports/Outdoors", LocalDateTime.now(), LocalDateTime.now(), "300 S Church St, Charlotte, NC 28202"));
-        events.add(new Vamp(1, "Happy Hour", "Food/Bev", LocalDateTime.now(), LocalDateTime.now(), "222 S Church St, Charlotte, NC 28202"));
-        events.add(new Vamp(2, "Puppy Adoption", "Community", LocalDateTime.now(), LocalDateTime.now(), "2000 South Blvd #200, Charlotte, NC 28203"));
+        events.add(new Vamp(0, "Disc Golf", "Sports/Outdoors", LocalDateTime.now(), LocalDateTime.now(),"35.2270° N", "80.8478° W"));
+        events.add(new Vamp(1, "Happy Hour", "Food/Bev", LocalDateTime.now(), LocalDateTime.now(), "35.2087° N", "80.8628° W"));
+        events.add(new Vamp(2, "Puppy Adoption", "Community", LocalDateTime.now(), LocalDateTime.now(), "35.1522° N", "80.8318° W"));
     }
 
     @PostConstruct
@@ -46,5 +46,7 @@ public class VampController {
 //
 //        return model;
 //    }
+
+
 
 }

@@ -15,28 +15,32 @@ public class Vamp {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)//the value of "id" will be automatically generated
     int id;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
-    @Column
+    @Column(nullable = false)
     private String category;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime eventStart;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime eventEnd;
 
-    @Column
-    private String Location;
+    @Column(nullable = false)
+    private String latitude;
 
-    public Vamp(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String location) {
+    @Column(nullable = false)
+    private String longitude;
+
+    public Vamp(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String latitude, String longitude) {
         this.id = id;
         this.description = description;
         this.category = category;
         this.eventStart = eventStart;
         this.eventEnd = eventEnd;
-        Location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Vamp() {
@@ -82,11 +86,19 @@ public class Vamp {
         this.eventEnd = eventEnd;
     }
 
-    public String getLocation() {
-        return Location;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setLocation(String location) {
-        Location = location;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }
