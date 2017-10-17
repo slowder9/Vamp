@@ -15,14 +15,19 @@ public class Vamp {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)//the value of "id" will be automatically generated
     int id;
 
+    @Column
     private String description;
 
+    @Column
     private String category;
 
+    @Column
     private LocalDateTime eventStart;
 
+    @Column
     private LocalDateTime eventEnd;
 
+    @Column
     private String Location;
 
     public Vamp(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String location) {

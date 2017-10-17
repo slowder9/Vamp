@@ -32,9 +32,6 @@ public class VampController {
     @PostConstruct
     public void init() {
     }
-//    public void postConstruct() {
-//        Vamp fakeEvent = new Vamp();
-//    }
 
     @CrossOrigin
     @RequestMapping(path = "/events", method = RequestMethod.GET)
