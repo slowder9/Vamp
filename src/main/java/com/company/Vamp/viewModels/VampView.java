@@ -1,6 +1,7 @@
 package com.company.Vamp.viewModels;
 
 import com.company.Vamp.models.Vamp;
+
 import java.util.List;
 import java.util.ArrayList;
 
