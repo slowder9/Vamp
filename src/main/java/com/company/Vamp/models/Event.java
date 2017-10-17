@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "events")
-public class Vamp {
+public class Event {
     @Id//this is a primary key column
     @GeneratedValue(strategy = GenerationType.SEQUENCE)//the value of "id" will be automatically generated
             int id;
@@ -33,7 +33,7 @@ public class Vamp {
     @Column
     private EventEnum eventCategory ;
 
-    public Vamp(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String location) {
+    public Event(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String location) {
         this.id = id;
         this.description = description;
         this.category = category;
@@ -42,7 +42,7 @@ public class Vamp {
         Location = location;
     }
 
-    public Vamp() {
+    public Event() {
     }
 
     public int getId() {
@@ -93,3 +93,4 @@ public class Vamp {
         Location = location;
     }
 }
+

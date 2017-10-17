@@ -6,9 +6,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class VampApplication {
+public class EventApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VampApplication.class, args);
+		SpringApplication.run(EventApplication.class, args);
 	}
 }
