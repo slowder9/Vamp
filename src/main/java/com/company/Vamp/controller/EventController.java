@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
-import javax.servlet.http.HttpSession;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -49,7 +48,7 @@ public class EventController {
 //    }
 
     @CrossOrigin
-    @RequestMapping(path = "/add_events", method = RequestMethod.POST)
+    @RequestMapping(path = "/add-events", method = RequestMethod.POST)
     // This is the event that the user submitted.
     // SPRING LOOKS AT THE FORM DATA AND BUILDS US
     // THIS EVENT. THIS IS AWESOME.
