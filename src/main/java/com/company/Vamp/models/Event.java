@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "events")
 public class Event {
@@ -33,12 +34,14 @@ public class Event {
     @Column(nullable = false)
     private String longitude;
 
+//    LocalDateTime eventTime = LocalDateTime.now().atTime();
+
     public Event(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String latitude, String longitude) {
         this.id = id;
         this.description = description;
         this.category = category;
-        this.eventStart = eventStart;
-        this.eventEnd = eventEnd;
+        this.eventStart = LocalDateTime.now();
+        this.eventEnd = LocalDateTime.now();
         this.latitude = latitude;
         this.longitude = longitude;
     }
