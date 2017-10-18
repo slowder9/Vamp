@@ -3,6 +3,7 @@ package com.company.Vamp.controller;
 import com.company.Vamp.models.Event;
 import com.company.Vamp.viewModels.EventView;
 import com.company.Vamp.repositories.EventRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,8 +55,9 @@ public class EventController {
     // SPRING LOOKS AT THE FORM DATA AND BUILDS US
     // THIS EVENT. THIS IS AWESOME.
     public String addEvent(Event submittedEvent) {
+        LocalDateTime.minusMinutes ();
         eventRepo.save(submittedEvent);
     // save "submittedEvent" into the database.
-        return "redirect:/";
+        return "redirect:/events";
     }
 }
