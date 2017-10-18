@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
 
@@ -24,10 +25,10 @@ public class Event {
     private String category;
 
     @Column(nullable = false)
-    private Date eventStart;
+    private Time eventStart;
 
     @Column(nullable = false)
-    private Date eventEnd;
+    private Time eventEnd;
 
     @Column(nullable = false)
     private String latitude;
@@ -40,7 +41,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(int id, String description, String category, Date eventStart, Date eventEnd, String latitude, String longitude) {
+    public Event(int id, String description, String category, Time eventStart, Time eventEnd, String latitude, String longitude) {
         this.id = id;
         this.description = description;
         this.category = category;
@@ -74,19 +75,19 @@ public class Event {
         this.category = category;
     }
 
-    public Date getEventStart() {
+    public Time getEventStart() {
         return eventStart;
     }
 
-    public void setEventStart(Date eventStart) {
+    public void setEventStart(Time eventStart) {
         this.eventStart = eventStart;
     }
 
-    public Date getEventEnd() {
+    public Time getEventEnd() {
         return eventEnd;
     }
 
-    public void setEventEnd(Date eventEnd) {
+    public void setEventEnd(Time eventEnd) {
         this.eventEnd = eventEnd;
     }
 
