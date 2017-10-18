@@ -58,6 +58,6 @@ public class EventController {
         LocalDateTime.minusMinutes ();
         eventRepo.save(submittedEvent);
     // save "submittedEvent" into the database.
-        return "redirect:/events";
+        return "redirect:/";
     }
 }
