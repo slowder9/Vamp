@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
 
@@ -23,10 +25,10 @@ public class Event {
     private String category;
 
     @Column(nullable = false)
-    private LocalDateTime eventStart;
+    private Time eventStart;
 
     @Column(nullable = false)
-    private LocalDateTime eventEnd;
+    private Time eventEnd;
 
     @Column(nullable = false)
     private String latitude;
@@ -36,17 +38,17 @@ public class Event {
 
 //    LocalDateTime eventTime = LocalDateTime.now().atTime();
 
-    public Event(int id, String description, String category, LocalDateTime eventStart, LocalDateTime eventEnd, String latitude, String longitude) {
+    public Event() {
+    }
+
+    public Event(int id, String description, String category, Time eventStart, Time eventEnd, String latitude, String longitude) {
         this.id = id;
         this.description = description;
         this.category = category;
-        this.eventStart = LocalDateTime.now();
-        this.eventEnd = LocalDateTime.now();
+        this.eventStart = eventStart;
+        this.eventEnd = eventEnd;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    public Event() {
     }
 
     public int getId() {
@@ -73,19 +75,19 @@ public class Event {
         this.category = category;
     }
 
-    public LocalDateTime getEventStart() {
+    public Time getEventStart() {
         return eventStart;
     }
 
-    public void setEventStart(LocalDateTime eventStart) {
+    public void setEventStart(Time eventStart) {
         this.eventStart = eventStart;
     }
 
-    public LocalDateTime getEventEnd() {
+    public Time getEventEnd() {
         return eventEnd;
     }
 
-    public void setEventEnd(LocalDateTime eventEnd) {
+    public void setEventEnd(Time eventEnd) {
         this.eventEnd = eventEnd;
     }
 

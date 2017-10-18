@@ -5,14 +5,18 @@ import com.company.Vamp.viewModels.EventView;
 import com.company.Vamp.repositories.EventRepository;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import javax.annotation.PostConstruct;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -26,7 +30,7 @@ public class EventController {
     List<Event> events = new ArrayList<>();
 
     public EventController() {
-        events.add(new Event(0, "Disc Golf", "Sports/Outdoors", LocalDate.now().atTime(6,0), LocalDate.now().atTime(9, 30), "35.2270", "-80.8478"));
+        events.add(new Event(0, "Disc Golf", "Sports/Outdoors", Time.valueOf("10:00:00"), Time.valueOf("11:00:00"), "35.2270", "-80.8478"));
 //        events.add(new Event(1, "Happy Hour", "Food/Bev", LocalDateTime.now(), LocalDateTime.now(), "35.2087° N", "80.8628° W"));
 //        events.add(new Event(2, "Puppy Adoption", "Community", LocalDateTime.now(), LocalDateTime.now(), "35.1522° N", "80.8318° W"));
     }
@@ -54,7 +58,7 @@ public class EventController {
     // This is the event that the user submitted.
     // SPRING LOOKS AT THE FORM DATA AND BUILDS US
     // THIS EVENT. THIS IS AWESOME.
-    public String addEvent(Event submittedEvent) {
+    public String addEvent(@RequestBody Event submittedEvent) {
         eventRepo.save(submittedEvent);
     // save "submittedEvent" into the database.
         return "redirect:/";
