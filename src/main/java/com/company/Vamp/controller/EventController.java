@@ -58,12 +58,8 @@ public class EventController {
     // This is the event that the user submitted.
     // SPRING LOOKS AT THE FORM DATA AND BUILDS US
     // THIS EVENT. THIS IS AWESOME.
-<<<<<<< HEAD
+
     public String addEvent(@RequestBody Event submittedEvent) {
-=======
-    public String addEvent(Event submittedEvent) {
-        LocalDateTime.minusMinutes ();
->>>>>>> 858fb96f28754c32c53be3107ec0d85b209cc9b3
         eventRepo.save(submittedEvent);
     // save "submittedEvent" into the database.
         return "redirect:/";
