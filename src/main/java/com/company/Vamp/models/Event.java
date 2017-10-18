@@ -40,6 +40,16 @@ public class Event {
     public Event() {
     }
 
+    public Event(int id, String description, String category, Date eventStart, Date eventEnd, String latitude, String longitude) {
+        this.id = id;
+        this.description = description;
+        this.category = category;
+        this.eventStart = eventStart;
+        this.eventEnd = eventEnd;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public int getId() {
         return id;
     }
