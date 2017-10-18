@@ -4,10 +4,7 @@ import com.company.Vamp.models.Event;
 import com.company.Vamp.viewModels.EventView;
 import com.company.Vamp.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import javax.annotation.PostConstruct;
@@ -53,7 +50,7 @@ public class EventController {
     // This is the event that the user submitted.
     // SPRING LOOKS AT THE FORM DATA AND BUILDS US
     // THIS EVENT. THIS IS AWESOME.
-    public String addEvent(Event submittedEvent) {
+    public String addEvent(@RequestBody Event submittedEvent) {
         eventRepo.save(submittedEvent);
     // save "submittedEvent" into the database.
         return "redirect:/";
