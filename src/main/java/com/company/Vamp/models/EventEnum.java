@@ -6,13 +6,13 @@ public enum EventEnum {
     COMMUNITY("Community"),
     FOOD_BEV("Food and Beverage");
 
-    private String eventType;
+    private String category;
 
-    public String getEventType() {
-        return eventType;
+    public String getCategory() {
+        return category;
     }
 
-    EventEnum(String eventType) {
-        this.eventType = eventType;
+    EventEnum(String category) {
+        this.category = category;
     }
 }

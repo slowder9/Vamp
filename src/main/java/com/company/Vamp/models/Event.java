@@ -18,6 +18,12 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)//the value of "id" will be automatically generated
             int id;
 
+
+    @Column(nullable = true)
+    private int like;
+
+    private static int LIKE_COUNTER;
+
     @Column(nullable = false)
     private String description;
 
@@ -49,6 +55,14 @@ public class Event {
         this.eventEnd = eventEnd;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 
     public int getId() {
@@ -105,6 +119,13 @@ public class Event {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public static Event makeLike() {
+        Event e = new Event();
+        e.setLike(LIKE_COUNTER);
+        LIKE_COUNTER++;
+        return e;
     }
 }
 

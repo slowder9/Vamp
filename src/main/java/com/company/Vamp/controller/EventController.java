@@ -1,25 +1,13 @@
 package com.company.Vamp.controller;
 
 import com.company.Vamp.models.Event;
-import com.company.Vamp.viewModels.EventView;
 import com.company.Vamp.repositories.EventRepository;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.ui.Model;
-
 import javax.annotation.PostConstruct;
-import java.sql.Date;
 import java.sql.Time;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAmount;
-import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.ArrayList;
-import java.time.LocalDateTime;
 
 @RestController
 public class EventController {
@@ -60,7 +48,13 @@ public class EventController {
     // THIS EVENT. THIS IS AWESOME.
     public String addEvent(@RequestBody Event submittedEvent) {
         eventRepo.save(submittedEvent);
-    // save "submittedEvent" into the database.
+        // save "submittedEvent" into the database.
         return "redirect:/";
+    }
+    @CrossOrigin
+    @PostMapping("/events")
+    public int like(@RequestBody Event click) {
+        eventRepo.save(click);
+        return 0;
     }
 }
