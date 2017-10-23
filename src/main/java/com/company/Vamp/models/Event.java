@@ -1,5 +1,7 @@
 package com.company.Vamp.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 import javax.persistence.Entity;
@@ -9,20 +11,22 @@ import javax.persistence.Id;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @Table(name = "events")
 public class Event {
     @Id//this is a primary key column
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)//the value of "id" will be automatically generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//the value of "id" will be automatically generated
             int id;
 
 
-    @Column(nullable = true)
-    private int like;
-
-    private static int LIKE_COUNTER;
+//    @Column(nullable = true)
+//    private int like;
+//
+//    private static int LIKE_COUNTER;
 
     @Column(nullable = false)
     private String description;
@@ -42,6 +46,12 @@ public class Event {
     @Column(nullable = false)
     private String longitude;
 
+    @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Likes> likes = new ArrayList<Likes>();
+
+
+
 //    @Column(nullable = true)
 //    private int like;
 
@@ -50,32 +60,23 @@ public class Event {
     public Event() {
     }
 
-    public Event(int id, String description, String category, Time eventStart, Time eventEnd, String latitude, String longitude) {
-        this.id = id;
+    public Event(String description, String category, Time eventStart, Time eventEnd, String latitude, String longitude) {
         this.description = description;
         this.category = category;
         this.eventStart = eventStart;
         this.eventEnd = eventEnd;
         this.latitude = latitude;
         this.longitude = longitude;
-//        this.like = like;
+//        this.likes = likes;
     }
 
-    public int getLike() {
-        return like;
-    }
-
-    public void setLike(int like) {
-        this.like = like;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getDescription() {
         return description;
@@ -125,21 +126,32 @@ public class Event {
         this.longitude = longitude;
     }
 
-<<<<<<< HEAD
-//    public int getLike() {
+    public List<Likes> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Likes> likes) {
+        this.likes = likes;
+    }
+
+    public void addLike (Likes likes) {
+        this.likes.add(likes);
+    }
+
+    //    public int getLike() {
 //        return like;
 //    }
 //
 //    public void setLike(int like) {
 //        this.like = like;
 //    }
-=======
-    public static Event makeLike() {
-        Event e = new Event();
-        e.setLike(LIKE_COUNTER);
-        LIKE_COUNTER++;
-        return e;
-    }
->>>>>>> fa9acfef16907be04fb664cc8928dd6a5a27f86c
+
+//    public static Event makeLike() {
+//        Event e = new Event();
+//        e.setLike(LIKE_COUNTER);
+//        LIKE_COUNTER++;
+//        return e;
+//    }
+
 }
 
