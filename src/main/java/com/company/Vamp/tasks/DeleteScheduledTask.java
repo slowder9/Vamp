@@ -14,7 +14,7 @@ public class DeleteScheduledTask {
     @Autowired
     EventRepository eventsRepo;
 
-    @Scheduled(cron = "0 24 * * * SAT-SUN")
+    @Scheduled(cron = "0 24 * * * SUN-SUN")
     public void wipeEvents() {
         eventsRepo.deleteAll();
     }
