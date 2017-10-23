@@ -29,8 +29,9 @@ public class EventController {
 
     @CrossOrigin
     @RequestMapping(path = "/events", method = RequestMethod.GET)
-    public List<Event> getEvents() {
-        return events;
+    public List<Event> getEvents()
+    {
+        return (List<Event>)eventRepo.findAll();
     }
 //    public EventView homepage() {
 //        EventView model = new EventView();
@@ -48,7 +49,7 @@ public class EventController {
     // THIS EVENT. THIS IS AWESOME.
     public String addEvent(@RequestBody Event submittedEvent) {
         eventRepo.save(submittedEvent);
-        // save "submittedEvent" into the database.
+
         return "redirect:/";
     }
     @CrossOrigin
