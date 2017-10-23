@@ -2,14 +2,19 @@ package com.company.Vamp.controller;
 
 import com.company.Vamp.models.Event;
 import com.company.Vamp.models.Likes;
+import com.company.Vamp.models.User;
 import com.company.Vamp.repositories.EventRepository;
 import com.company.Vamp.repositories.LikesRepository;
+import com.company.Vamp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
+import org.springframework.ui.Model;
 import java.sql.Time;
 import java.util.List;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
 
 @RestController
 public class EventController {
@@ -19,6 +24,9 @@ public class EventController {
 
     @Autowired
     LikesRepository likesRepo;
+
+    @Autowired
+    UserRepository userRepo;
 
 //    List<Event> events = new ArrayList<>();
 //
@@ -44,16 +52,51 @@ public class EventController {
         eventRepo.save(fakeEvent);
     }
 
+    @PostConstruct
+    public void fakeUser() {
+        if (userRepo.count() == 0) {
+
+            User u = new User();
+            u.setUserName("fakeUser1@vamp.com");
+            u.setPassword("123");
+            userRepo.save(u);
+        }
+
+        if (userRepo.count() == 1) {
+            User u = new User();
+            u.setUserName("fakeUser2@vamp.com");
+            u.setPassword("abc");
+            userRepo.save(u);
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    public String login(Model model, HttpSession session) {
+        if (session.getAttribute("current_user") == null) {
+            return "signup";
+        }
+        return "index";
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/signup", method = RequestMethod.POST)
+    public String signUp(@RequestBody User createdUser, HttpSession session) {
+        userRepo.save(createdUser);
+        session.setAttribute("current_user", createdUser);
+        return "/";
+    }
+
     @CrossOrigin
     @RequestMapping(path = "/events", method = RequestMethod.GET)
     public List<Event> getEvents() {
-        return (List<Event>)eventRepo.findAll();
+        return (List<Event>) eventRepo.findAll();
     }
 
     @CrossOrigin
     @RequestMapping(path = "/likes", method = RequestMethod.GET)
     public List<Likes> getLikes() {
-        return (List<Likes>)likesRepo.findAll();
+        return (List<Likes>) likesRepo.findAll();
     }
 
 //    public EventView homepage() {
@@ -84,11 +127,4 @@ public class EventController {
 
         return 0;
     }
-
-//    @CrossOrigin
-//    @PostMapping("/events")
-//    public int like(@RequestBody Event click) {
-//        eventRepo.save(click);
-//        return 0;
-//    }
 }
