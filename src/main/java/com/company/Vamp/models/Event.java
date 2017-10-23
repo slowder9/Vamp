@@ -42,6 +42,9 @@ public class Event {
     @Column(nullable = false)
     private String longitude;
 
+//    @Column(nullable = true)
+//    private int like;
+
 //    LocalDateTime eventTime = LocalDateTime.now().atTime();
 
     public Event() {
@@ -55,6 +58,7 @@ public class Event {
         this.eventEnd = eventEnd;
         this.latitude = latitude;
         this.longitude = longitude;
+//        this.like = like;
     }
 
     public int getLike() {
@@ -121,11 +125,21 @@ public class Event {
         this.longitude = longitude;
     }
 
+<<<<<<< HEAD
+//    public int getLike() {
+//        return like;
+//    }
+//
+//    public void setLike(int like) {
+//        this.like = like;
+//    }
+=======
     public static Event makeLike() {
         Event e = new Event();
         e.setLike(LIKE_COUNTER);
         LIKE_COUNTER++;
         return e;
     }
+>>>>>>> fa9acfef16907be04fb664cc8928dd6a5a27f86c
 }
 

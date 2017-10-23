@@ -49,6 +49,7 @@ public class EventController {
     // THIS EVENT. THIS IS AWESOME.
     public String addEvent(@RequestBody Event submittedEvent) {
         eventRepo.save(submittedEvent);
+    // save "submittedEvent" into the database.
 
         return "redirect:/";
     }
