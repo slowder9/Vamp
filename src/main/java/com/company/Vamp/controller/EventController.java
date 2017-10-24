@@ -8,8 +8,11 @@ import com.company.Vamp.repositories.LikesRepository;
 import com.company.Vamp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.PostConstruct;
+
 import org.springframework.ui.Model;
+
 import java.sql.Time;
 import java.util.List;
 import java.util.ArrayList;
@@ -47,7 +50,7 @@ public class EventController {
     @CrossOrigin
     @GetMapping(path = "/user")
     public User getUser(HttpSession session) {
-        return (User)session.getAttribute(USER_KEY);
+        return (User) session.getAttribute(USER_KEY);
     }
 
     // persist (aka save) the user they sent us
@@ -102,8 +105,7 @@ public class EventController {
 
     @CrossOrigin
     @PostMapping(path = "/add-likes/{id}")
-    public void addLike(@RequestBody Likes submittedLike, @PathVariable ("id") int id ) {
-//        likesRepo.save(submittedLike);
+    public void addLike(@RequestBody Likes submittedLike, @PathVariable("id") int id) {
         Event e = eventRepo.findOne(id);
         e.addLike(submittedLike);
         eventRepo.save(e);
