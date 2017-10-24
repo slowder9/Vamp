@@ -94,7 +94,7 @@ public class EventController {
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     public void signUp(@RequestBody User user, HttpServletResponse response) throws IOException {
         // if we can't find a user with the name specified...
-        if (userRepo.findFirstByName(user.getUserName()) == null) {
+        if (userRepo.findFirstByUserName(user.getUserName()) == null) {
             userRepo.save(user);
         } else {
             // we found a user with that name, respond with
@@ -108,7 +108,7 @@ public class EventController {
     public void login(@RequestBody User user, HttpSession session, HttpServletResponse response) throws IOException {
         // HEY, REPOSITORY
         // Do you have any users with this guy's name and password?
-        User repoUser = userRepo.findFirstByNameAndPassword(user.getUserName(), user.getPassword());
+        User repoUser = userRepo.findFirstByUserNameAndPassword(user.getUserName(), user.getPassword());
 
         if (repoUser != null) {
             session.setAttribute(USER_KEY, repoUser);
@@ -151,18 +151,17 @@ public class EventController {
     // This is the event that the user submitted.
     // SPRING LOOKS AT THE FORM DATA AND BUILDS US
     // THIS EVENT. THIS IS AWESOME.
-    public String addEvent(@RequestBody Event submittedEvent) {
+    public void addEvent(@RequestBody Event submittedEvent) {
         eventRepo.save(submittedEvent);
-
         // save "submittedEvent" into the database.
-        return "redirect:/";
     }
 
     @CrossOrigin
-    @RequestMapping(path = "/add-likes", method = RequestMethod.POST)
-    public int addLike(@RequestBody Likes submittedLike) {
-        likesRepo.save(submittedLike);
-
-        return 0;
+    @RequestMapping(path = "/add-likes/{id}", method = RequestMethod.POST)
+    public void addLike(@RequestBody Likes submittedLike, @PathVariable ("id") int id ) {
+//        likesRepo.save(submittedLike);
+        Event e = eventRepo.findOne(id);
+        e.addLike(submittedLike);
+        eventRepo.save(e);
     }
 }
