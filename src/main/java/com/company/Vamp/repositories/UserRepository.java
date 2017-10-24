@@ -8,4 +8,7 @@ import java.awt.*;
 public interface UserRepository
         extends CrudRepository<User, Integer> {
 
+    User findFirstByName(String name);
+
+    User findFirstByNameAndPassword(String name, String password);
 }

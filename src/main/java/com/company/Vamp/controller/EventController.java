@@ -15,9 +15,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RestController
 public class EventController {
+
+    private final String USER_KEY = "user";
 
     @Autowired
     EventRepository eventRepo;
@@ -52,40 +56,74 @@ public class EventController {
         eventRepo.save(fakeEvent);
     }
 
-    @PostConstruct
-    public void fakeUser() {
-        if (userRepo.count() == 0) {
+//    @PostConstruct
+//    public void fakeUser() {
+//        if (userRepo.count() == 0) {
+//
+//            User u = new User();
+//            u.setUserName("fakeUser1@vamp.com");
+//            u.setPassword("123");
+//            userRepo.save(u);
+//        }
+//
+//        if (userRepo.count() == 1) {
+//            User u = new User();
+//            u.setUserName("fakeUser2@vamp.com");
+//            u.setPassword("abc");
+//            userRepo.save(u);
+//        }
+//    }
 
-            User u = new User();
-            u.setUserName("fakeUser1@vamp.com");
-            u.setPassword("123");
-            userRepo.save(u);
-        }
+//    @CrossOrigin
+//    @RequestMapping(path = "/login", method = RequestMethod.GET)
+//    public String login(Model model, HttpSession session) {
+//        if (session.getAttribute("current_user") == null) {
+//            return "signup";
+//        }
+//        return "index";
+//    }
 
-        if (userRepo.count() == 1) {
-            User u = new User();
-            u.setUserName("fakeUser2@vamp.com");
-            u.setPassword("abc");
-            userRepo.save(u);
+    @CrossOrigin
+    @RequestMapping(path = "/user", method = RequestMethod.GET)
+    public User getUser(HttpSession session) {
+        return (User)session.getAttribute(USER_KEY);
+    }
+
+    // persist (aka save) the user they sent us
+    @CrossOrigin
+    @RequestMapping(path = "/user", method = RequestMethod.POST)
+    public void signUp(@RequestBody User user, HttpServletResponse response) throws IOException {
+        // if we can't find a user with the name specified...
+        if (userRepo.findFirstByName(user.getUserName()) == null) {
+            userRepo.save(user);
+        } else {
+            // we found a user with that name, respond with
+            // an error code
+            response.sendError(422, "User already exists");
         }
     }
 
     @CrossOrigin
-    @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public String login(Model model, HttpSession session) {
-        if (session.getAttribute("current_user") == null) {
-            return "signup";
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public void login(@RequestBody User user, HttpSession session, HttpServletResponse response) throws IOException {
+        // HEY, REPOSITORY
+        // Do you have any users with this guy's name and password?
+        User repoUser = userRepo.findFirstByNameAndPassword(user.getUserName(), user.getPassword());
+
+        if (repoUser != null) {
+            session.setAttribute(USER_KEY, repoUser);
+        } else {
+            response.sendError(401, "Bad credentials");
         }
-        return "index";
     }
 
-    @CrossOrigin
-    @RequestMapping(path = "/signup", method = RequestMethod.POST)
-    public String signUp(@RequestBody User createdUser, HttpSession session) {
-        userRepo.save(createdUser);
-        session.setAttribute("current_user", createdUser);
-        return "/";
-    }
+//    @CrossOrigin
+//    @RequestMapping(path = "/signup", method = RequestMethod.POST)
+//    public String signUp(@RequestBody User createdUser, HttpSession session) {
+//        userRepo.save(createdUser);
+//        session.setAttribute("current_user", createdUser);
+//        return "/";
+//    }
 
     @CrossOrigin
     @RequestMapping(path = "/events", method = RequestMethod.GET)
