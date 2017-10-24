@@ -41,10 +41,10 @@ public class EventController {
 
     @PostConstruct
     public void init() {
-        Event fakeEvent = new Event("Disc Golf", "Sports/Outdoors", Time.valueOf("10:00:00"), Time.valueOf("11:00:00"), "35.2270", "-80.8478");
-        fakeEvent.addLike(new Likes());
-        fakeEvent.addLike(new Likes());
-        eventRepo.save(fakeEvent);
+//        Event fakeEvent = new Event("Disc Golf", "Sports/Outdoors", Time.valueOf("10:00:00"), Time.valueOf("11:00:00"), "35.2270", "-80.8478");
+//        fakeEvent.addLike(new Likes());
+//        fakeEvent.addLike(new Likes());
+//        eventRepo.save(fakeEvent);
     }
 
     @CrossOrigin
