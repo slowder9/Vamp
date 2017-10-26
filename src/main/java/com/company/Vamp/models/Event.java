@@ -23,11 +23,6 @@ public class Event {
             int id;
 
 
-//    @Column(nullable = true)
-//    private int like;
-//
-//    private static int LIKE_COUNTER;
-
     @Column(nullable = false)
     private String description;
 
@@ -50,14 +45,8 @@ public class Event {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Likes> likes = new ArrayList<Likes>();
 
-
-
-//    @Column(nullable = true)
-//    private int like;
-
-//    LocalDateTime eventTime = LocalDateTime.now().atTime();
-
     public Event() {
+
     }
 
     public Event(String description, String category, Time eventStart, Time eventEnd, String latitude, String longitude) {
@@ -67,7 +56,6 @@ public class Event {
         this.eventEnd = eventEnd;
         this.latitude = latitude;
         this.longitude = longitude;
-//        this.likes = likes;
     }
 
     public int getId() {
@@ -134,24 +122,8 @@ public class Event {
         this.likes = likes;
     }
 
-    public void addLike (Likes likes) {
+    public void addLike(Likes likes) {
         this.likes.add(likes);
     }
-
-    //    public int getLike() {
-//        return like;
-//    }
-//
-//    public void setLike(int like) {
-//        this.like = like;
-//    }
-
-//    public static Event makeLike() {
-//        Event e = new Event();
-//        e.setLike(LIKE_COUNTER);
-//        LIKE_COUNTER++;
-//        return e;
-//    }
-
 }
 
