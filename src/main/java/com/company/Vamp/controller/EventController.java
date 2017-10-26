@@ -106,8 +106,8 @@ public class EventController {
     @CrossOrigin
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public void login(@RequestBody User user, HttpSession session, HttpServletResponse response) throws IOException {
-        // HEY, REPOSITORY
-        // Do you have any users with this guy's name and password?
+        // ASKS THE REPOSITORY:
+        // Do you have any users with this username and password?
         User repoUser = userRepo.findFirstByUserNameAndPassword(user.getUserName(), user.getPassword());
 
         if (repoUser != null) {
@@ -137,20 +137,12 @@ public class EventController {
         return (List<Likes>) likesRepo.findAll();
     }
 
-//    public EventView homepage() {
-//        EventView model = new EventView();
-//        Vamp fakeEvent = new Vamp(0, "Disc Golf", "Sports/Outdoors", LocalDateTime.now(), LocalDateTime.now(),"Romare Bearden Park");
-//
-//        model.getEvents().add(fakeEvent);
-//
-//        return model;
-//    }
 
     @CrossOrigin
     @RequestMapping(path = "/add-events", method = RequestMethod.POST)
     // This is the event that the user submitted.
     // SPRING LOOKS AT THE FORM DATA AND BUILDS US
-    // THIS EVENT. THIS IS AWESOME.
+    // THIS EVENT.
     public void addEvent(@RequestBody Event submittedEvent) {
         eventRepo.save(submittedEvent);
         // save "submittedEvent" into the database.
