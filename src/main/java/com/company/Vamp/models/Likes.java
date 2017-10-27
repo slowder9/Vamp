@@ -11,13 +11,6 @@ public class Likes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-//    @Column(nullable = false)
-//    private String user;
-
-//    public Likes(int id) {
-//        this.id = id;
-//    }
-
     public Likes() {
     }
 
@@ -28,14 +21,6 @@ public class Likes {
     public void setId(int id) {
         this.id = id;
     }
-
-//    public String getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(String user) {
-//        this.user = user;
-//    }
 
     @Override
     public String toString() {

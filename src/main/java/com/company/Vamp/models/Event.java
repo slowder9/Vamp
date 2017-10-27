@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +16,8 @@ import java.util.List;
 @Entity
 @Table(name = "events")
 public class Event {
-    @Id//this is a primary key column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//the value of "id" will be automatically generated
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
             int id;
 
 
