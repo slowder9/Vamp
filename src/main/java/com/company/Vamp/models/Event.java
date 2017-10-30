@@ -1,9 +1,7 @@
 package com.company.Vamp.models;
 
 import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
