@@ -1,7 +1,6 @@
 package com.company.Vamp.models;
 
 import javax.persistence.*;
-
 import javax.persistence.Entity;
 
 @Entity
