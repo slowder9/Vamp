@@ -93,10 +93,6 @@ public class EventController {
         return (List<Likes>) likesRepo.findAll();
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 952839431ce606b76757b418979b8e371170fbae
     @CrossOrigin
     @PostMapping(path = "/add-events")
     // This is the event that the user submitted.
